@@ -1,4 +1,6 @@
 (function($){
+    var charWidth = 10;
+    var charHeight = 14;
     var ListView = Backbone.View.extend({
         el: $('body'),
 
@@ -11,7 +13,9 @@
 
 
         initialize: function(){
-            _.bindAll(this, 'render', 'addItem', 'addItem10', 'clear');
+            _.bindAll(this, 'render', 'addItem', 'addItem10', 'clear', 'getDemensions');
+
+            $(window).on('resize', this.getDemensions);
 
             this.counter = 0;
             this.render();
@@ -20,9 +24,11 @@
             $(this.el).append("<button id='add'>plink!</button>");
             $(this.el).append("<button id='add10'>plonk!</button>");
             $(this.el).append("<button id='clearAll'>zoink!</button>");
+            $(this.el).append("<span id='height'></span>");
+            $(this.el).append("<span id='width'></span>");
             $(this.el).append("<ul></ul>");
-            $(this.el).append("<ul></ul>");
-            $(this.el).append("<ul></ul>");
+            $(this.el).append("<div id='gameArea'></div>");
+            
         },
 
         addItem: function(){
@@ -34,6 +40,11 @@
             _.each(_.range(10),function(){
                 this.addItem();
             }, this)
+        },
+
+        getDemensions: function(){
+            $('#height').html("height = " + window.innerHeight + " ");
+            $('#width').html("width = " + window.innerWidth + " ");
         },
 
         clear: function(){
