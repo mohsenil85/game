@@ -1,8 +1,20 @@
 * {
-  background-color: lightblue;
+  background-image: url("../images/Untitled.png");
+  background-repeat: no-repeat;
   font-family: monospace;
 }
 
+#tree {
+  background-image: url("../images/tree.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+  width: 100px;
+  height: 100px;
+}
 #littleDude {
   background-image: url("../images/littleDude.png");
   background-repeat: no-repeat;
