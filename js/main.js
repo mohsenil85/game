@@ -24,9 +24,9 @@
   pg.append("<div id='littleDude'></div>")
   _.each(_.range(10), function(i){
   pg.append("<div id='tree" +i+ "'></div>")
+  }, this)
 
-  })
-
+  pg.append("<div id='tree'></div>")
 
   $(document).keydown(function(e) {
     switch(e.which){
