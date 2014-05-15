@@ -1,52 +1,31 @@
 (function($){
-  var charWidth = 7;
-  var charHeight = 14;
-  var ListView = Backbone.View.extend({
-    el: $('body'),
-
-    events: {
-      'click button#add': 'addItem',
-      'click button#add10': 'addItem10',
-      'click button#clearAll': 'clear'
-    },
-
-
-
-    initialize: function(){
-      _.bindAll(this, 'render',  'fillRow', 'fillCol');
-
-      $(window).on('resize', this.fillCol);
-
-      this.counter = 0;
-      this.render();
-    },
-    render: function(){
-      this.fillCol();
-      $(this.el).addClass('gameArea');
-
-    },
-
-    fillRow: function(){
-      var width = window.innerWidth / charWidth - 8;
-      _.each(_.range(width), function(){
-        $(this.el).append(".");
-      }, this);
-      $(this.el).append("<br>");
-    },
-
-    fillCol: function(){
-      this.clear();
-      var height = window.innerHeight / charHeight;
-      _.each(_.range(height), function(){
-        this.fillRow();
-      }, this);
-    },
-
-    clear: function(){
-      $(this.el).empty();
-    }
-  });
+  var PLAYGROUND_HEIGHT  = window.innerHeight;
+  var PLAYGROUND_WIDTH  = window.innerWidth;
+  var scrollPosition = [
+    self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,
+    self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop
+  ];
+  var html = jQuery('html'); 
+  html.data('scroll-position', scrollPosition);
+  html.data('previous-overflow', html.css('overflow'));
+  html.css('overflow', 'hidden');
+  window.scrollTo(scrollPosition[0], scrollPosition[1]);
 
 
-  var listView = new ListView();
+  $('body').attr('id', 'playground');
+
+  var pg = $('#playground');
+
+/*
+  $("#playground").playground({height: PLAYGROUND_HEIGHT, 
+             width: PLAYGROUND_WIDTH, keyTracker: true});
+
+*/
+  pg.append("<div id='littleDude'></div>")
+
+    $(document).click(function() {
+       $('#littleDude').animate({
+         'marginTop' : "-=30px"
+       })
+    });
 })(jQuery);
